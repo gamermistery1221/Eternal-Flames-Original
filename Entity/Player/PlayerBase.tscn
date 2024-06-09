@@ -1,0 +1,84 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://Scripts/EntityBasesScript/PlayerBase.gd" type="Script" id=1]
+[ext_resource path="res://Entity/Base/EntityBase.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ImagesActors/PlayerMage/Run/Run2.png" type="Texture" id=3]
+[ext_resource path="res://ImagesActors/PlayerMage/Run/Run6.png" type="Texture" id=4]
+[ext_resource path="res://ImagesActors/PlayerMage/Run/Run3.png" type="Texture" id=5]
+[ext_resource path="res://ImagesActors/PlayerMage/Run/Run4.png" type="Texture" id=6]
+[ext_resource path="res://ImagesActors/PlayerMage/Idle/Idle5.png" type="Texture" id=7]
+[ext_resource path="res://ImagesActors/PlayerMage/Attack/StaffWood/AttackWood1.png" type="Texture" id=8]
+[ext_resource path="res://ImagesActors/PlayerMage/Attack/StaffWood/AttackWood2.png" type="Texture" id=9]
+[ext_resource path="res://ImagesActors/PlayerMage/Run/Run5.png" type="Texture" id=10]
+[ext_resource path="res://ImagesActors/PlayerMage/Attack/StaffWood/AttackWood4.png" type="Texture" id=11]
+[ext_resource path="res://ImagesActors/PlayerMage/Idle/Idle1.png" type="Texture" id=12]
+[ext_resource path="res://ImagesActors/PlayerMage/Attack/StaffWood/AttackWood5.png" type="Texture" id=13]
+[ext_resource path="res://ImagesActors/PlayerMage/Idle/Idle6.png" type="Texture" id=14]
+[ext_resource path="res://ImagesActors/PlayerMage/Attack/StaffWood/AttackWood3.png" type="Texture" id=15]
+[ext_resource path="res://ImagesActors/PlayerMage/Run/Run1.png" type="Texture" id=16]
+[ext_resource path="res://ImagesActors/PlayerMage/Idle/Idle4.png" type="Texture" id=17]
+[ext_resource path="res://ImagesActors/PlayerMage/Idle/Idle2.png" type="Texture" id=18]
+[ext_resource path="res://ImagesActors/PlayerMage/Attack/StaffWood/AttackWood6.png" type="Texture" id=19]
+[ext_resource path="res://ImagesActors/PlayerMage/Dying/Dying2.png" type="Texture" id=20]
+[ext_resource path="res://ImagesActors/PlayerMage/Dying/Dying3.png" type="Texture" id=21]
+[ext_resource path="res://ImagesActors/PlayerMage/Dying/Dying1.png" type="Texture" id=22]
+[ext_resource path="res://ImagesActors/PlayerMage/Decomposing/Decomposing5.png" type="Texture" id=23]
+[ext_resource path="res://ImagesActors/PlayerMage/Idle/Idle3.png" type="Texture" id=24]
+[ext_resource path="res://ImagesActors/PlayerMage/Decomposing/Decomposing4.png" type="Texture" id=25]
+[ext_resource path="res://ImagesActors/PlayerMage/Dying/Dying5.png" type="Texture" id=26]
+[ext_resource path="res://ImagesActors/PlayerMage/Dying/Dying6.png" type="Texture" id=27]
+[ext_resource path="res://ImagesActors/PlayerMage/Decomposing/Decomposing3.png" type="Texture" id=28]
+[ext_resource path="res://ImagesActors/PlayerMage/Dying/Dying4.png" type="Texture" id=29]
+[ext_resource path="res://ImagesActors/PlayerMage/Decomposing/Decomposing1.png" type="Texture" id=30]
+[ext_resource path="res://ImagesActors/PlayerMage/Decomposing/Decomposing2.png" type="Texture" id=31]
+[ext_resource path="res://ImagesActors/PlayerMage/Decomposing/Decomposing6.png" type="Texture" id=32]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 18 ), ExtResource( 24 ), ExtResource( 17 ), ExtResource( 7 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 29 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 28 ), ExtResource( 25 ), ExtResource( 23 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "Die",
+"speed": 7.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4.5, 6.5 )
+
+[node name="PlayerBase" instance=ExtResource( 2 )]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource( 1 )
+speed = 3
+
+[node name="AnimatedSprite" parent="." index="0"]
+frames = SubResource( 1 )
+animation = "Idle"
+frame = 2
+playing = true
+
+[node name="Hurtbox" parent="." index="2"]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0.5, 0.5 )
+shape = SubResource( 2 )
+
+[connection signal="died" from="." to="." method="_on_PlayerBase_died"]
+
+[editable path="Hurtbox"]

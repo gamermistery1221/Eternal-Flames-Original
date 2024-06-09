@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://dy4jc43s33ehj"]
+
+[ext_resource type="Script" path="res://VictoryFlag/victory_flag.gd" id="1_6x0ig"]
+[ext_resource type="Texture2D" uid="uid://bu8dwa7utxves" path="res://VictoryFlag/Victory Flag.png" id="1_dudjq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta7kw"]
+atlas = ExtResource("1_dudjq")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifp1m"]
+atlas = ExtResource("1_dudjq")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di4ke"]
+atlas = ExtResource("1_dudjq")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmveg"]
+atlas = ExtResource("1_dudjq")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6836c"]
+atlas = ExtResource("1_dudjq")
+region = Rect2(256, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_43ius"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta7kw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifp1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di4ke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmveg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6836c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4b34a"]
+
+[node name="Victory Flag" type="Node2D"]
+script = ExtResource("1_6x0ig")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_43ius")
+autoplay = "default"
+frame_progress = 0.958414
+metadata/_edit_lock_ = true
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="AnimatedSprite2D"]
+position = Vector2(0, -48)
+shape = SubResource("RectangleShape2D_4b34a")
+target_position = Vector2(0, 104)
